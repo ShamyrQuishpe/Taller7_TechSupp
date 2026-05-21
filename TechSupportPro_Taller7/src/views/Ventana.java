@@ -55,6 +55,17 @@ public class Ventana extends JFrame {
         cmbRango.setModel(new DefaultComboBoxModel(new String[] {"Bronce", "Plata", "Oro"}));
         BoxConstelcion.setModel(new DefaultComboBoxModel(new String[] {"Pégaso", "Dragón", "Cisne", "Andrómeda", "Fénix", "Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis", "Águila", "Ofiuco", "Lira", "Lagarto", "Ballena", "Perseo", "Cefeo"}));
         BoxConst.setModel(new DefaultComboBoxModel(new String[] {"Pégaso", "Dragón", "Cisne", "Andrómeda", "Fénix", "Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis", "Águila", "Ofiuco", "Lira", "Lagarto", "Ballena", "Perseo", "Cefeo"}));
+
+        spnNvlPoder.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        spnDific.setModel(new SpinnerNumberModel(1, 1, 5, 1));
+        spnMonedas.setModel(new SpinnerNumberModel(0.0, 0.0, 1000000.0, 500.0));
+
+        spnPoderMod.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        spnDifMod.setModel(new SpinnerNumberModel(1, 1, 5, 1));
+        spnMonedasMod.setModel(new SpinnerNumberModel(0.0, 0.0, 1000000.0, 500.0));
+
+
+
         btnRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -332,7 +343,7 @@ public class Ventana extends JFrame {
     // Método para precargar datos de prueba al iniciar la aplicación
     private void precargarDatos() {
         // Caballero 1 (Bronce)
-        Caballero c1 = new Caballero(1, "Seiya", "Bronce", "Pega-so", 85, "Proteger a Athena", 3, 15000.0);
+        Caballero c1 = new Caballero(1, "Seiya", "Bronce", "Pégaso", 85, "Proteger a Athena", 3, 15000.0);
         // Caballero 2 (Plata)
         Caballero c2 = new Caballero(5, "Marin", "Plata", "Águila", 90, "Entrenar aspirantes", 4, 60000.0);
         // Caballero 3 (Oro)
