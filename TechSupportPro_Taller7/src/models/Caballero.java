@@ -86,4 +86,17 @@ public class Caballero {
     public void setRecompensa(double recompensa) {
         this.recompensa = recompensa;
     }
+
+    @Override
+    public String toString() {
+        return "Caballero: " +
+                id + " | " +
+                nombreCab + " | " +
+                rangoCab + " | " +
+                constelacionCab + " | " +
+                nivelPoderCab + " | " +
+                mision + " | " +
+                dificultad + " | $" +
+                recompensa;
+    }
 }

@@ -3,6 +3,8 @@ package controllers;
 import models.Caballero;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CaballeroController {
 
@@ -25,10 +27,32 @@ public class CaballeroController {
     // buscar por id
     public Caballero buscarPorId(int id) {
 
-        for (Caballero c : listaCaballeros) {
+        // ordenar lista por ID
+        Collections.sort(listaCaballeros,
+                Comparator.comparingInt(Caballero::getId));
 
-            if (c.getId() == id) {
-                return c;
+        int izquierda = 0;
+        int derecha = listaCaballeros.size() - 1;
+
+        while (izquierda <= derecha) {
+
+            int medio = (izquierda + derecha) / 2;
+
+            Caballero caballero = listaCaballeros.get(medio);
+            System.out.println("Buscando: " + id);
+            System.out.println("Comparando con: " + caballero.getId());
+            if (caballero.getId() == id) {
+
+                return caballero;
+            }
+
+            if (caballero.getId() < id) {
+
+                izquierda = medio + 1;
+
+            } else {
+
+                derecha = medio - 1;
             }
         }
 
