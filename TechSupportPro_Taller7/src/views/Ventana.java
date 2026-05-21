@@ -12,11 +12,7 @@ public class Ventana extends JFrame {
     private JTabbedPane tabbedPane1;
     private JTextField txtId;
     private JTextField txtNombre;
-    private JTextField txtConstelacion;
-    private JTextField txtNivelPoder;
     private JTextField txtMision;
-    private JTextField txtDificultad;
-    private JTextField txtRecompensa;
     private JComboBox cmbRango;
     private JButton btnRegistrar;
     private JTextArea txtAreaResultados;
@@ -24,8 +20,6 @@ public class Ventana extends JFrame {
     private JTextField txtIdModificar;
     private JTextField txtNombreModificar;
     private JTextField txtConstelacionModificar;
-    private JTextField txtNivelPoderModificar;
-    private JTextField txtDificultadModificar;
     private JTextField txtMisionModificar;
     private JTextField txtRecompensaModificar;
     private JTextField txtBuscarId;
@@ -40,6 +34,14 @@ public class Ventana extends JFrame {
     private JTextArea txtAreaCalculo;
     private JButton btnCalcular;
     private JTextArea txtAreaListar;
+    private JSpinner spnDific;
+    private JSpinner spnNvlPoder;
+    private JComboBox BoxConstelcion;
+    private JComboBox BoxConst;
+    private JSpinner spnPoderMod;
+    private JSpinner spnDifMod;
+    private JSpinner spnMonedasMod;
+    private JSpinner spnMonedas;
     private CaballeroController controller;
 
 
@@ -49,7 +51,10 @@ public class Ventana extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900,700);
         setLocationRelativeTo(null);
+        precargarDatos();
         cmbRango.setModel(new DefaultComboBoxModel(new String[] {"Bronce", "Plata", "Oro"}));
+        BoxConstelcion.setModel(new DefaultComboBoxModel(new String[] {"Pégaso", "Dragón", "Cisne", "Andrómeda", "Fénix", "Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis", "Águila", "Ofiuco", "Lira", "Lagarto", "Ballena", "Perseo", "Cefeo"}));
+        BoxConst.setModel(new DefaultComboBoxModel(new String[] {"Pégaso", "Dragón", "Cisne", "Andrómeda", "Fénix", "Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis", "Águila", "Ofiuco", "Lira", "Lagarto", "Ballena", "Perseo", "Cefeo"}));
         btnRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,15 +66,25 @@ public class Ventana extends JFrame {
 
                     String rango = cmbRango.getSelectedItem().toString();
 
-                    String constelacion = txtConstelacion.getText();
+//                    String constelacion = txtConstelacion.getText();
+                    String constelacion =  BoxConstelcion.getSelectedItem().toString();
 
-                    int nivelPoder = Integer.parseInt(txtNivelPoder.getText());
+//                    int nivelPoder = Integer.parseInt(txtNivelPoder.getText());
+                    int nivelPoder = Integer.parseInt(spnNvlPoder.getValue().toString());
 
                     String mision = txtMision.getText();
 
-                    int dificultad = Integer.parseInt(txtDificultad.getText());
+                    int dificultad = Integer.parseInt(spnDific.getValue().toString());
 
-                    double recompensa = Double.parseDouble(txtRecompensa.getText());
+                    double recompensa = Double.parseDouble(spnMonedas.getValue().toString());
+
+                    if (controller.buscarPorId(id) != null) {
+                        JOptionPane.showMessageDialog(null,
+                                "Error: El ID " + id + " ya se encuentra registrado.",
+                                "ID Duplicado",
+                                JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
 
                     Caballero caballero = new Caballero(
                             id,
@@ -122,30 +137,19 @@ public class Ventana extends JFrame {
                                 caballero.getRangoCab()
                         );
 
-                        txtConstelacionModificar.setText(
-                                caballero.getConstelacionCab()
-                        );
+                        BoxConst.setSelectedItem(caballero.getConstelacionCab());
 
-                        txtNivelPoderModificar.setText(
-                                String.valueOf(
-                                        caballero.getNivelPoderCab()
-                                )
-                        );
+                        spnPoderMod.setValue(caballero.getNivelPoderCab());
 
                         txtMisionModificar.setText(
                                 caballero.getMision()
                         );
-
-                        txtDificultadModificar.setText(
-                                String.valueOf(
-                                        caballero.getDificultad()
-                                )
+                        spnDifMod.setValue(
+                                caballero.getDificultad()
                         );
 
-                        txtRecompensaModificar.setText(
-                                String.valueOf(
+                        spnMonedasMod.setValue(
                                         caballero.getRecompensa()
-                                )
                         );
 
                         txtAreaModificar.setText(caballero.toString());
@@ -181,16 +185,17 @@ public class Ventana extends JFrame {
                                     cmbRangoModificar
                                             .getSelectedItem()
                                             .toString(),
-                                    txtConstelacionModificar.getText(),
+                                    BoxConst.getSelectedItem().toString(),
                                     Integer.parseInt(
-                                            txtNivelPoderModificar.getText()
+                                            spnPoderMod.getValue().toString()
                                     ),
+
                                     txtMisionModificar.getText(),
                                     Integer.parseInt(
-                                            txtDificultadModificar.getText()
+                                            spnDifMod.getValue().toString()
                                     ),
                                     Double.parseDouble(
-                                            txtRecompensaModificar.getText()
+                                            spnMonedasMod.getValue().toString()
                                     )
                             );
 
@@ -324,4 +329,29 @@ public class Ventana extends JFrame {
         });
     }
 
+    // Método para precargar datos de prueba al iniciar la aplicación
+    private void precargarDatos() {
+        // Caballero 1 (Bronce)
+        Caballero c1 = new Caballero(1, "Seiya", "Bronce", "Pega-so", 85, "Proteger a Athena", 3, 15000.0);
+        // Caballero 2 (Plata)
+        Caballero c2 = new Caballero(5, "Marin", "Plata", "Águila", 90, "Entrenar aspirantes", 4, 60000.0);
+        // Caballero 3 (Oro)
+        Caballero c3 = new Caballero(12, "Aioria", "Oro", "Leo", 100, "Custodiar la Casa de Leo", 5, 250000.0);
+
+        // Guardar en el controlador
+        controller.registrarCaballero(c1);
+        controller.registrarCaballero(c2);
+        controller.registrarCaballero(c3);
+
+        // Sincronizar con el ComboBox de la pestaña de Cálculos/Reportes
+        cmbCaballerosReporte.addItem(c1.getId() + " - " + c1.getNombreCab());
+        cmbCaballerosReporte.addItem(c2.getId() + " - " + c2.getNombreCab());
+        cmbCaballerosReporte.addItem(c3.getId() + " - " + c3.getNombreCab());
+
+        // Opcional: Mostrar los datos iniciales en el txtAreaResultados de la primera pestaña
+        txtAreaResultados.append("--- Datos Iniciales Precargados ---\n");
+        txtAreaResultados.append(c1.toString() + "\n");
+        txtAreaResultados.append(c2.toString() + "\n");
+        txtAreaResultados.append(c3.toString() + "\n");
+    }
 }
