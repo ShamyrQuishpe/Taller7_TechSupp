@@ -132,27 +132,25 @@ Recompensa Neta = Recompensa − Aporte − Impuesto
 
 ### Registro
 
-Agregar captura aquí
 
-![Registro](ruta-imagen)
+<img width="675" height="343" alt="image" src="https://github.com/user-attachments/assets/e7e7fefc-18b1-41e7-af94-d3f02c362d3f" />
+
 
 ### Búsqueda
 
-Agregar captura aquí
+<img width="886" height="359" alt="image" src="https://github.com/user-attachments/assets/77f532b7-1d2f-4cff-bb7b-1cdaf4164278" />
 
-![Busqueda](ruta-imagen)
+### Modificación
 
-### Listado
+<img width="886" height="402" alt="image" src="https://github.com/user-attachments/assets/d1124037-f67f-4473-8ddc-11ee6be4ebb2" />
 
-Agregar captura aquí
+### Lista
 
-![Listado](ruta-imagen)
+<img width="886" height="325" alt="image" src="https://github.com/user-attachments/assets/3e48c71b-805f-4f00-8d38-3bfde7ae6b6e" />
 
 ### Cálculos
 
-Agregar captura aquí
-
-![Calculos](ruta-imagen)
+<img width="886" height="342" alt="image" src="https://github.com/user-attachments/assets/cbe8495b-b8bc-4e77-8d9e-3811596b5ae0" />
 
 ---
 
