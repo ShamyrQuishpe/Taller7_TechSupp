@@ -48,10 +48,6 @@ ProyectoCaballeros/
 │   │
 │   └── Main.java
 │
-├── docs/
-│      Diagramas UML
-│      Informe.pdf
-│
 └── README.md
 ```
 
