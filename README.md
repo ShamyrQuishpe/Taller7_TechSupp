@@ -159,7 +159,7 @@ Recompensa Neta = Recompensa − Aporte − Impuesto
 ### Clonar repositorio
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/ShamyrQuishpe/Taller7_TechSupp.git
 ```
 
 ### Abrir el proyecto
